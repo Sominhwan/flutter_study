@@ -1,5 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:timer_builder/timer_builder.dart';
+import 'package:date_format/date_format.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,7 +8,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,23 +17,23 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Color.fromRGBO(213, 213, 213, 1.0),
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(80.0),
+          preferredSize: Size.fromHeight(70.0),
           child: AppBar(
             backgroundColor: Color.fromRGBO(36, 87, 189, 1.0),
 
-            leading: Image.asset('assets/images/deulogo.png', height:20 , width:20), // 이미지 경로 설정
+            leading: Image.asset('assets/images/deulogo.png', height:10), // 이미지 경로 설정
 
-            title: Text("모바일ID",
+            title: const Text("모바일ID",
               style: TextStyle(
                 fontSize: 30.0,
                 fontWeight: FontWeight.bold,
-                height: 2.2
+                height: 2
               ),
             ),
             centerTitle: true,
             elevation: 0.0,
-            iconTheme: IconThemeData(
-              size: 55,//change size on your need
+            iconTheme: const IconThemeData(
+              size: 50,//change size on your need
               color: Colors.blueAccent,//change color on your need
             ),
           ),
@@ -41,8 +41,8 @@ class MyApp extends StatelessWidget {
         body: Column(
           children: [
             Container(
-              height: 300,
-              margin: EdgeInsets.only(top:40,left:15,right: 15),
+              height: 220,
+              margin: EdgeInsets.only(top:30,left:15,right: 15),
               //padding: EdgeInsets.only(top:30),
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -61,44 +61,48 @@ class MyApp extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Image.asset('assets/images/deuImage.png'),
-                      Image.asset('assets/images/qrCode.png', width: 200),
+                      Image.asset('assets/images/deuImage.png',width: 110),
+                      Image.asset('assets/images/qrCode.png', width: 125),
                     ],
 
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text(
+                      const Text (
                         '',
                       ),
-                      Text(
-                        '14:24:04',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.0,
-                        ),
+                      TimerBuilder.periodic(
+                        const Duration(seconds: 1),
+                        builder: (context) {
+                          return Text(
+                            formatDate(DateTime.now(), [hh, ':', nn, ':', ss]),
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w700,
+
+                            ),
+                          );
+                        },
                       ),
                     ],
                   ),
-
-                  Divider(
-                    height: 30,
+                  const Divider(
+                    height: 12,
                     thickness: 1,
                     indent: 20,
                     endIndent: 20,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
+                    children: const[
                       Text(' s777777003',
                         style: TextStyle(
                           fontSize: 18,
-                          color: Colors.blueAccent,
+                          color: Colors.indigo,
                         ),
                       ),
-                      Text('특별열람증      ',
+                      Text('       ZL\n'+'특별열람증      ',
                         style: TextStyle(
                           fontSize: 20,
                         ),
@@ -111,9 +115,25 @@ class MyApp extends StatelessWidget {
               )
 
             ),
-            BottomNavigationBar(
+            Container(
+              height: 220,
+              margin: EdgeInsets.only(top:40,left:15,right: 15, bottom: 29),
+              //padding: EdgeInsets.only(top:30),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(5),
+              ),
+              child: const Center(
+                child: Text(
+                    '안녕'
+                ),
+              ),
+            ),
+            BottomNavigationBar (
               type: BottomNavigationBarType.fixed,
-              items: [
+              iconSize: 40,
+
+              items: const[
                 BottomNavigationBarItem(
                     icon: Icon(Icons.phone_iphone, color: Colors.black),
                     label: "모바일ID"
@@ -123,11 +143,11 @@ class MyApp extends StatelessWidget {
                     label: "D-Food"
                 ),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.account_balance_wallet, color: Colors.black),
+                    icon: Icon(Icons.account_balance_wallet, color: Colors.amber),
                     label: "D-Pay"
                 ),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.menu_book, color: Colors.black),
+                    icon: Icon(Icons.menu_book, color: Colors.amber),
                     label: "좌석배정"
                 ),
                 BottomNavigationBarItem(
@@ -136,29 +156,42 @@ class MyApp extends StatelessWidget {
                 ),
               ],
             ),
-            Container(
-              height: 300,
-              margin: EdgeInsets.only(top:60,left:15,right: 15),
-              //padding: EdgeInsets.only(top:30),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(5),
-              ),
-              child: Center(
-                child: Text(
-                    '안녕'
-                ),
-              ),
-            ),
           ],
         ),
+
+        // bottomNavigationBar: BottomNavigationBar(
+        //
+        //   items: const <BottomNavigationBarItem>[
+        //     BottomNavigationBarItem(
+        //       icon: Icon(Icons.phone_iphone, color: Colors.black),
+        //       label: "모바일ID",
+        //     ),
+        //     BottomNavigationBarItem(
+        //       icon: Icon(Icons.restaurant_menu, color: Colors.black),
+        //       label: "D-Food",
+        //     ),
+        //     BottomNavigationBarItem(
+        //         icon: Icon(Icons.account_balance_wallet, color: Colors.amber),
+        //         label: "D-Pay"
+        //     ),
+        //     BottomNavigationBarItem(
+        //         icon: Icon(Icons.menu_book, color: Colors.amber),
+        //         label: "좌석배정"
+        //     ),
+        //     BottomNavigationBarItem(
+        //         icon: Icon(Icons.settings, color: Colors.black),
+        //         label: "환경설정"
+        //     ),
+        //
+        //   ],
+        // ),
         endDrawer: Drawer(
           child: Container(
             color: Colors.blue,
           ),
         ),
       ),
-
     );
+
   }
 }
