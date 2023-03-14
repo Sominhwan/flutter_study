@@ -13,14 +13,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title : "동의 모바일",
       debugShowCheckedModeBanner: false,
-
       home: Scaffold(
         backgroundColor: Color.fromRGBO(213, 213, 213, 1.0),
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(70.0),
           child: AppBar(
             backgroundColor: Color.fromRGBO(36, 87, 189, 1.0),
-
             leading: Image.asset('assets/images/deulogo.png', height:10), // 이미지 경로 설정
 
             title: const Text("모바일ID",
@@ -64,7 +62,6 @@ class MyApp extends StatelessWidget {
                       Image.asset('assets/images/deuImage.png',width: 110),
                       Image.asset('assets/images/qrCode.png', width: 125),
                     ],
-
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -80,7 +77,6 @@ class MyApp extends StatelessWidget {
                             style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w700,
-
                             ),
                           );
                         },
@@ -108,31 +104,65 @@ class MyApp extends StatelessWidget {
                         ),
                       ),
                     ],
-
                   ),
-
                 ],
               )
-
             ),
             Container(
               height: 220,
+              padding: EdgeInsets.all(20.0),
               margin: EdgeInsets.only(top:40,left:15,right: 15, bottom: 29),
-              //padding: EdgeInsets.only(top:30),
+
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(5),
               ),
-              child: const Center(
-                child: Text(
-                    '안녕'
-                ),
+              child: GridView.count(
+                crossAxisCount: 3, // 칸 수
+                physics: FixedExtentScrollPhysics(),
+                mainAxisSpacing: 0, // 아이템들의 수직 간격
+                crossAxisSpacing: 30, // 아이템들의 수평 간격
+
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/images/icon1.png',width: 90),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/images/icon2.png',width: 100),
+                    ],
+                  ),
+                  // 다른 아이콘 추가 가능
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/images/icon3.png',width: 80),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/images/icon4.png',width: 90),
+                    ],
+                  ),
+                  // 다른 아이콘 추가 가능
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/images/icon5.png',width: 100),
+                    ],
+                  ),
+                ],
               ),
             ),
+
             BottomNavigationBar (
               type: BottomNavigationBarType.fixed,
               iconSize: 40,
-
               items: const[
                 BottomNavigationBarItem(
                     icon: Icon(Icons.phone_iphone, color: Colors.black),
@@ -158,33 +188,6 @@ class MyApp extends StatelessWidget {
             ),
           ],
         ),
-
-        // bottomNavigationBar: BottomNavigationBar(
-        //
-        //   items: const <BottomNavigationBarItem>[
-        //     BottomNavigationBarItem(
-        //       icon: Icon(Icons.phone_iphone, color: Colors.black),
-        //       label: "모바일ID",
-        //     ),
-        //     BottomNavigationBarItem(
-        //       icon: Icon(Icons.restaurant_menu, color: Colors.black),
-        //       label: "D-Food",
-        //     ),
-        //     BottomNavigationBarItem(
-        //         icon: Icon(Icons.account_balance_wallet, color: Colors.amber),
-        //         label: "D-Pay"
-        //     ),
-        //     BottomNavigationBarItem(
-        //         icon: Icon(Icons.menu_book, color: Colors.amber),
-        //         label: "좌석배정"
-        //     ),
-        //     BottomNavigationBarItem(
-        //         icon: Icon(Icons.settings, color: Colors.black),
-        //         label: "환경설정"
-        //     ),
-        //
-        //   ],
-        // ),
         endDrawer: Drawer(
           child: Container(
             color: Colors.blue,
@@ -192,6 +195,5 @@ class MyApp extends StatelessWidget {
         ),
       ),
     );
-
   }
 }
