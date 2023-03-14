@@ -11,7 +11,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home:MainPage(),
+    );
+  }
+}
+class MainPage extends StatelessWidget {
+  const MainPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
       title : "동의 모바일",
+      theme: ThemeData(
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          selectedItemColor: Colors.black87,
+          unselectedItemColor: Colors.black87,
+          unselectedLabelStyle: TextStyle(fontSize: 14)
+        ),
+      ),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Color.fromRGBO(213, 213, 213, 1.0),
@@ -23,9 +41,9 @@ class MyApp extends StatelessWidget {
 
             title: const Text("모바일ID",
               style: TextStyle(
-                fontSize: 30.0,
-                fontWeight: FontWeight.bold,
-                height: 2
+                  fontSize: 30.0,
+                  fontWeight: FontWeight.bold,
+                  height: 2
               ),
             ),
             centerTitle: true,
@@ -39,74 +57,74 @@ class MyApp extends StatelessWidget {
         body: Column(
           children: [
             Container(
-              height: 220,
-              margin: EdgeInsets.only(top:30,left:15,right: 15),
-              //padding: EdgeInsets.only(top:30),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.3),
-                    spreadRadius: 0,
-                    blurRadius: 5.0,
-                    offset: Offset(0, 10), // changes position of shadow
-                  ),
-                ],
-              ),
-              child:Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Image.asset('assets/images/deuImage.png',width: 110),
-                      Image.asset('assets/images/qrCode.png', width: 125),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      const Text (
-                        '',
-                      ),
-                      TimerBuilder.periodic(
-                        const Duration(seconds: 1),
-                        builder: (context) {
-                          return Text(
-                            formatDate(DateTime.now(), [hh, ':', nn, ':', ss]),
-                            style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                  const Divider(
-                    height: 12,
-                    thickness: 1,
-                    indent: 20,
-                    endIndent: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: const[
-                      Text(' s777777003',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.indigo,
+                height: 220,
+                margin: EdgeInsets.only(top:30,left:15,right: 15),
+                //padding: EdgeInsets.only(top:30),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.3),
+                      spreadRadius: 0,
+                      blurRadius: 5.0,
+                      offset: Offset(0, 10), // changes position of shadow
+                    ),
+                  ],
+                ),
+                child:Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Image.asset('assets/images/deuImage.png',width: 110),
+                        Image.asset('assets/images/qrCode.png', width: 125),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        const Text (
+                          '',
                         ),
-                      ),
-                      Text('       ZL\n'+'특별열람증      ',
-                        style: TextStyle(
-                          fontSize: 20,
+                        TimerBuilder.periodic(
+                          const Duration(seconds: 1),
+                          builder: (context) {
+                            return Text(
+                              formatDate(DateTime.now(), [hh, ':', nn, ':', ss]),
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            );
+                          },
                         ),
-                      ),
-                    ],
-                  ),
-                ],
-              )
+                      ],
+                    ),
+                    const Divider(
+                      height: 12,
+                      thickness: 1,
+                      indent: 20,
+                      endIndent: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: const[
+                        Text(' s777777003',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.indigo,
+                          ),
+                        ),
+                        Text('       ZL\n'+'특별열람증      ',
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                )
             ),
             Container(
               height: 220,
@@ -146,7 +164,7 @@ class MyApp extends StatelessWidget {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset('assets/images/icon4.png',width: 90),
+                      Image.asset('assets/images/icon4.png',width: 100),
                     ],
                   ),
                   // 다른 아이콘 추가 가능
@@ -159,32 +177,40 @@ class MyApp extends StatelessWidget {
                 ],
               ),
             ),
+            //CustomBottomNavigationBar(),
 
-            BottomNavigationBar (
-              type: BottomNavigationBarType.fixed,
-              iconSize: 40,
-              items: const[
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.phone_iphone, color: Colors.black),
-                    label: "모바일ID"
-                ),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.restaurant_menu, color: Colors.black),
-                    label: "D-Food"
-                ),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.account_balance_wallet, color: Colors.amber),
-                    label: "D-Pay"
-                ),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.menu_book, color: Colors.amber),
-                    label: "좌석배정"
-                ),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.settings, color: Colors.black),
-                    label: "환경설정"
-                ),
-              ],
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black, width: 1),
+                borderRadius: BorderRadius.circular(1),
+              ),
+              child: BottomNavigationBar (
+                type: BottomNavigationBarType.fixed,
+                iconSize: 30,
+                items: const[
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.phone_iphone, color: Colors.black),
+                      label: "모바일ID"
+                  ),
+
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.restaurant_menu, color: Colors.black),
+                      label: "D-Food"
+                  ),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.account_balance_wallet, color: Colors.amber),
+                      label: "D-Pay"
+                  ),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.menu_book, color: Colors.amber),
+                      label: "좌석배정"
+                  ),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.settings, color: Colors.black),
+                      label: "환경설정"
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -197,3 +223,134 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+// class CustomBottomNavigationBar extends StatefulWidget {
+//   @override
+//   _CustomBottomNavigationBarState createState() =>
+//       _CustomBottomNavigationBarState();
+// }
+// class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
+//   int _selectedIndex = 0;
+//   List<Widget> _widgetOptions = <Widget>[
+//     Text('모바일ID'),
+//     Text('D-Food'),
+//     Text('D-Pay'),
+//     Text('좌석배정'),
+//     Text('환경설정'),
+//   ];
+//
+//   void _onItemTapped(int index) {
+//     setState(() {
+//       _selectedIndex = index;
+//     });
+//   }
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       height: 74.0,
+//       decoration: BoxDecoration(
+//         border: Border(
+//           top: BorderSide(
+//             color: Colors.black,
+//             width: 1,
+//           ),
+//           right: BorderSide(
+//             color: Colors.black,
+//             width: 1,
+//           ),
+//           bottom: BorderSide(
+//             color: Colors.black,
+//             width: 1,
+//           ),
+//           left: BorderSide(
+//             color: Colors.black,
+//             width: 1,
+//           )
+//         ),
+//         color: Colors.white,
+//         boxShadow: [
+//           BoxShadow(
+//             color: Colors.grey.withOpacity(0.3),
+//             spreadRadius: 1,
+//             blurRadius: 7,
+//             offset: Offset(0, 1), // changes position of shadow
+//           ),
+//         ],
+//
+//       ),
+//
+//       child : BottomNavigationBar(
+//         currentIndex: _selectedIndex,
+//         type: BottomNavigationBarType.fixed,
+//         onTap: _onItemTapped,
+//         iconSize: 35,
+//         items: [
+//           BottomNavigationBarItem(
+//             icon: Container(
+//               decoration: BoxDecoration(
+//                 border: Border.all(
+//                   color: Colors.grey, // 테두리 색상 설정
+//                   width: 1.0, // 테두리 두께 설정
+//                 ),
+//                 borderRadius: BorderRadius.circular(5.0), // 테두리 라운드 처리
+//               ),
+//               child: Icon(Icons.phone_iphone, color: Colors.black),
+//             ),
+//               label: "모바일ID"
+//           ),
+//           BottomNavigationBarItem(
+//             icon: Container(
+//               decoration: BoxDecoration(
+//                 border: Border.all(
+//                   color: Colors.grey, // 테두리 색상 설정
+//                   width: 1.0, // 테두리 두께 설정
+//                 ),
+//                 borderRadius: BorderRadius.circular(5.0), // 테두리 라운드 처리
+//               ),
+//               child: Icon(Icons.restaurant_menu, color: Colors.black),
+//             ),
+//               label: "D-Food"
+//           ),
+//           BottomNavigationBarItem(
+//               icon: Container(
+//                 decoration: BoxDecoration(
+//                   border: Border.all(
+//                     color: Colors.grey, // 테두리 색상 설정
+//                     width: 1.0, // 테두리 두께 설정
+//                   ),
+//                   borderRadius: BorderRadius.circular(5.0), // 테두리 라운드 처리
+//                 ),
+//                 child: Icon(Icons.account_balance_wallet, color: Colors.amber),
+//               ),
+//               label: "D-Pay"
+//           ),
+//           BottomNavigationBarItem(
+//               icon: Container(
+//                 decoration: BoxDecoration(
+//                   border: Border.all(
+//                     color: Colors.grey, // 테두리 색상 설정
+//                     width: 1.0, // 테두리 두께 설정
+//                   ),
+//                   borderRadius: BorderRadius.circular(5.0), // 테두리 라운드 처리
+//                 ),
+//                 child: Icon(Icons.menu_book, color: Colors.amber),
+//               ),
+//               label: "좌석배정"
+//           ),
+//           BottomNavigationBarItem(
+//               icon: Container(
+//                 decoration: BoxDecoration(
+//                   border: Border.all(
+//                     color: Colors.grey, // 테두리 색상 설정
+//                     width: 1.0, // 테두리 두께 설정
+//                   ),
+//                   borderRadius: BorderRadius.circular(5.0), // 테두리 라운드 처리
+//                 ),
+//                 child: Icon(Icons.settings, color: Colors.black),
+//               ),
+//               label: "환경설정"
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
