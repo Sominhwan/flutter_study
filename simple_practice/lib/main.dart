@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:timer_builder/timer_builder.dart';
 import 'package:date_format/date_format.dart';
@@ -177,180 +178,235 @@ class MainPage extends StatelessWidget {
                 ],
               ),
             ),
-            //CustomBottomNavigationBar(),
-
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black, width: 1),
-                borderRadius: BorderRadius.circular(1),
-              ),
-              child: BottomNavigationBar (
-                type: BottomNavigationBarType.fixed,
-                iconSize: 30,
-                items: const[
-                  BottomNavigationBarItem(
-                      icon: Icon(Icons.phone_iphone, color: Colors.black),
-                      label: "모바일ID"
-                  ),
-
-                  BottomNavigationBarItem(
-                      icon: Icon(Icons.restaurant_menu, color: Colors.black),
-                      label: "D-Food"
-                  ),
-                  BottomNavigationBarItem(
-                      icon: Icon(Icons.account_balance_wallet, color: Colors.amber),
-                      label: "D-Pay"
-                  ),
-                  BottomNavigationBarItem(
-                      icon: Icon(Icons.menu_book, color: Colors.amber),
-                      label: "좌석배정"
-                  ),
-                  BottomNavigationBarItem(
-                      icon: Icon(Icons.settings, color: Colors.black),
-                      label: "환경설정"
-                  ),
-                ],
-              ),
-            ),
+            CustomBottomNavigationBar(),
+            //
+            // Container(
+            //   decoration: BoxDecoration(
+            //     border: Border.all(color: Colors.black, width: 1),
+            //     borderRadius: BorderRadius.circular(1),
+            //   ),
+            //   child: BottomNavigationBar (
+            //     type: BottomNavigationBarType.fixed,
+            //     iconSize: 30,
+            //     items: const[
+            //       BottomNavigationBarItem(
+            //           icon: Icon(Icons.phone_iphone, color: Colors.black),
+            //           label: "모바일ID"
+            //       ),
+            //
+            //       BottomNavigationBarItem(
+            //           icon: Icon(Icons.restaurant_menu, color: Colors.black),
+            //           label: "D-Food"
+            //       ),
+            //       BottomNavigationBarItem(
+            //           icon: Icon(Icons.account_balance_wallet, color: Colors.amber),
+            //           label: "D-Pay"
+            //       ),
+            //       BottomNavigationBarItem(
+            //           icon: Icon(Icons.menu_book, color: Colors.amber),
+            //           label: "좌석배정"
+            //       ),
+            //       BottomNavigationBarItem(
+            //           icon: Icon(Icons.settings, color: Colors.black),
+            //           label: "환경설정"
+            //       ),
+            //     ],
+            //   ),
+            // ),
           ],
         ),
         endDrawer: Drawer(
-          child: Container(
-            color: Colors.blue,
-          ),
+          width: 220.0,
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: <Widget>[
+                Container(
+                  height: 104,
+                  margin:EdgeInsets.fromLTRB(0,23, 0, 0),
+                  child: UserAccountsDrawerHeader(
+                    accountName: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text('s77777703',style: TextStyle(fontSize: 18,color:Colors.white)),
+                        Icon(Icons.power_settings_new,size: 38,color: Colors.grey),
+                        Icon(Icons.close,size: 38,color: Colors.grey),
+                      ],
+                    ),
+                      accountEmail: Row(
+                      children: [
+
+                      ],
+                    ),
+                    // onDetailsPressed: () {
+                    //   print('arrow is clicked');
+                    // },
+                    decoration: BoxDecoration(
+                        color: Colors.black54,
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.zero,
+                            bottomRight: Radius.zero)
+                  ),
+                  ),
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.phone_iphone,
+                    size: 35,
+                    color: Colors.grey[850],
+                  ),
+                  title: Text('모바일ID',style: TextStyle(fontSize: 18)),
+                  onTap: () {
+                    print('Home is clicked');
+                  },
+                  //trailing: Icon(Icons.add),
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.restaurant_menu,
+                    size: 35,
+                    color: Colors.grey[850],
+                  ),
+                  title: Text('D-Food',style: TextStyle(fontSize: 18)),
+                  onTap: () {
+                    print('Setting is clicked');
+                  },
+                  //trailing: Icon(Icons.add),
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.account_balance_wallet,
+                    size: 35,
+                    color: Colors.orangeAccent,
+                  ),
+                  title: Text('D-Pay',style: TextStyle(fontSize: 18)),
+                  onTap: () {
+                    print('Q&A is clicked');
+                  },
+                  //trailing: Icon(Icons.add),
+                ),
+              ],
+            ),
         ),
       ),
     );
   }
 }
-// class CustomBottomNavigationBar extends StatefulWidget {
-//   @override
-//   _CustomBottomNavigationBarState createState() =>
-//       _CustomBottomNavigationBarState();
-// }
-// class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
-//   int _selectedIndex = 0;
-//   List<Widget> _widgetOptions = <Widget>[
-//     Text('모바일ID'),
-//     Text('D-Food'),
-//     Text('D-Pay'),
-//     Text('좌석배정'),
-//     Text('환경설정'),
-//   ];
-//
-//   void _onItemTapped(int index) {
-//     setState(() {
-//       _selectedIndex = index;
-//     });
-//   }
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       height: 74.0,
-//       decoration: BoxDecoration(
-//         border: Border(
-//           top: BorderSide(
-//             color: Colors.black,
-//             width: 1,
-//           ),
-//           right: BorderSide(
-//             color: Colors.black,
-//             width: 1,
-//           ),
-//           bottom: BorderSide(
-//             color: Colors.black,
-//             width: 1,
-//           ),
-//           left: BorderSide(
-//             color: Colors.black,
-//             width: 1,
-//           )
-//         ),
-//         color: Colors.white,
-//         boxShadow: [
-//           BoxShadow(
-//             color: Colors.grey.withOpacity(0.3),
-//             spreadRadius: 1,
-//             blurRadius: 7,
-//             offset: Offset(0, 1), // changes position of shadow
-//           ),
-//         ],
-//
-//       ),
-//
-//       child : BottomNavigationBar(
-//         currentIndex: _selectedIndex,
-//         type: BottomNavigationBarType.fixed,
-//         onTap: _onItemTapped,
-//         iconSize: 35,
-//         items: [
-//           BottomNavigationBarItem(
-//             icon: Container(
-//               decoration: BoxDecoration(
-//                 border: Border.all(
-//                   color: Colors.grey, // 테두리 색상 설정
-//                   width: 1.0, // 테두리 두께 설정
-//                 ),
-//                 borderRadius: BorderRadius.circular(5.0), // 테두리 라운드 처리
-//               ),
-//               child: Icon(Icons.phone_iphone, color: Colors.black),
-//             ),
-//               label: "모바일ID"
-//           ),
-//           BottomNavigationBarItem(
-//             icon: Container(
-//               decoration: BoxDecoration(
-//                 border: Border.all(
-//                   color: Colors.grey, // 테두리 색상 설정
-//                   width: 1.0, // 테두리 두께 설정
-//                 ),
-//                 borderRadius: BorderRadius.circular(5.0), // 테두리 라운드 처리
-//               ),
-//               child: Icon(Icons.restaurant_menu, color: Colors.black),
-//             ),
-//               label: "D-Food"
-//           ),
-//           BottomNavigationBarItem(
-//               icon: Container(
-//                 decoration: BoxDecoration(
-//                   border: Border.all(
-//                     color: Colors.grey, // 테두리 색상 설정
-//                     width: 1.0, // 테두리 두께 설정
-//                   ),
-//                   borderRadius: BorderRadius.circular(5.0), // 테두리 라운드 처리
-//                 ),
-//                 child: Icon(Icons.account_balance_wallet, color: Colors.amber),
-//               ),
-//               label: "D-Pay"
-//           ),
-//           BottomNavigationBarItem(
-//               icon: Container(
-//                 decoration: BoxDecoration(
-//                   border: Border.all(
-//                     color: Colors.grey, // 테두리 색상 설정
-//                     width: 1.0, // 테두리 두께 설정
-//                   ),
-//                   borderRadius: BorderRadius.circular(5.0), // 테두리 라운드 처리
-//                 ),
-//                 child: Icon(Icons.menu_book, color: Colors.amber),
-//               ),
-//               label: "좌석배정"
-//           ),
-//           BottomNavigationBarItem(
-//               icon: Container(
-//                 decoration: BoxDecoration(
-//                   border: Border.all(
-//                     color: Colors.grey, // 테두리 색상 설정
-//                     width: 1.0, // 테두리 두께 설정
-//                   ),
-//                   borderRadius: BorderRadius.circular(5.0), // 테두리 라운드 처리
-//                 ),
-//                 child: Icon(Icons.settings, color: Colors.black),
-//               ),
-//               label: "환경설정"
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
+class CustomBottomNavigationBar extends StatefulWidget {
+  @override
+  _CustomBottomNavigationBarState createState() =>
+      _CustomBottomNavigationBarState();
+}
+class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
+  int _selectedIndex = 0;
+  List<Widget> _widgetOptions = <Widget>[
+    Text('모바일ID'),
+    Text('D-Food'),
+    Text('D-Pay'),
+    Text('좌석배정'),
+    Text('환경설정'),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 74.0,
+      decoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(
+            color: Colors.grey,
+            width: 1,
+          ),
+        ),
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.3),
+            spreadRadius: 1,
+            blurRadius: 7,
+            offset: Offset(0, 1), // changes position of shadow
+          ),
+        ],
+
+      ),
+
+      child : BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        type: BottomNavigationBarType.fixed,
+        onTap: _onItemTapped,
+        iconSize: 35,
+        items: [
+          BottomNavigationBarItem(
+            icon: Container(
+              // decoration: BoxDecoration(
+              //   border: Border.all(
+              //     color: Colors.grey, // 테두리 색상 설정
+              //     width: 1.0, // 테두리 두께 설정
+              //   ),
+              //   borderRadius: BorderRadius.circular(5.0), // 테두리 라운드 처리
+              // ),
+              child: Icon(Icons.phone_iphone, color: Colors.black),
+            ),
+              label: "모바일ID"
+          ),
+          BottomNavigationBarItem(
+            icon: Container(
+              // decoration: BoxDecoration(
+              //   border: Border.all(
+              //     color: Colors.grey, // 테두리 색상 설정
+              //     width: 1.0, // 테두리 두께 설정
+              //   ),
+              //   borderRadius: BorderRadius.circular(5.0), // 테두리 라운드 처리
+              // ),
+              child: Icon(Icons.restaurant_menu, color: Colors.black),
+            ),
+              label: "D-Food"
+          ),
+          BottomNavigationBarItem(
+              icon: Container(
+                // decoration: BoxDecoration(
+                //   border: Border.all(
+                //     color: Colors.grey, // 테두리 색상 설정
+                //     width: 1.0, // 테두리 두께 설정
+                //   ),
+                //   borderRadius: BorderRadius.circular(5.0), // 테두리 라운드 처리
+                // ),
+                child: Icon(Icons.account_balance_wallet, color: Colors.amber),
+              ),
+              label: "D-Pay"
+          ),
+          BottomNavigationBarItem(
+              icon: Container(
+                // decoration: BoxDecoration(
+                //   border: Border.all(
+                //     color: Colors.grey, // 테두리 색상 설정
+                //     width: 1.0, // 테두리 두께 설정
+                //   ),
+                //   borderRadius: BorderRadius.circular(5.0), // 테두리 라운드 처리
+                // ),
+                child: Icon(Icons.menu_book, color: Colors.amber),
+              ),
+              label: "좌석배정"
+          ),
+          BottomNavigationBarItem(
+              icon: Container(
+                // decoration: BoxDecoration(
+                //   border: Border.all(
+                //     color: Colors.grey, // 테두리 색상 설정
+                //     width: 1.0, // 테두리 두께 설정
+                //   ),
+                //   borderRadius: BorderRadius.circular(5.0), // 테두리 라운드 처리
+                // ),
+                child: Icon(Icons.settings, color: Colors.black),
+              ),
+              label: "환경설정"
+          ),
+        ],
+      ),
+    );
+  }
+}
