@@ -261,7 +261,7 @@ class MainPage extends StatelessWidget {
                 },
                 //trailing: Icon(Icons.add),
               ),
-              Divider(),
+              Divider(color: Colors.black87),
               ListTile(
                 leading: Icon(
                   Icons.restaurant_menu,
@@ -275,7 +275,7 @@ class MainPage extends StatelessWidget {
                 },
                 //trailing: Icon(Icons.add),
               ),
-              Divider(),
+              Divider(color: Colors.black87),
               ListTile(
                 leading: Icon(
                   Icons.account_balance_wallet,
@@ -289,10 +289,10 @@ class MainPage extends StatelessWidget {
                 },
                 //trailing: Icon(Icons.add),
               ),
-              Divider(),
+              Divider(color: Colors.black87),
               ListTile(
                 leading: Icon(
-                  Icons.account_balance_wallet,
+                  Icons.menu_book,
                   size: 35,
                   color: Colors.orangeAccent,
                 ),
@@ -302,12 +302,12 @@ class MainPage extends StatelessWidget {
                   print('Q&A is clicked');
                 }, //trailing: Icon(Icons.add),
               ),
-              Divider(),
+              Divider(color: Colors.black87),
               ListTile(
                 leading: Icon(
-                  Icons.account_balance_wallet,
+                  Icons.chair_alt,
                   size: 35,
-                  color: Colors.orangeAccent,
+                  color: Colors.black54,
                 ),
                 title: Text('좌석배정',style: TextStyle(fontSize: 18)),
                 dense: true,
@@ -316,12 +316,12 @@ class MainPage extends StatelessWidget {
                 },
                 //trailing: Icon(Icons.add),
               ),
-              Divider(),
+              Divider(color: Colors.black87),
               ListTile(
                 leading: Icon(
-                  Icons.account_balance_wallet,
+                  Icons.laptop_windows,
                   size: 35,
-                  color: Colors.orangeAccent,
+                  color: Colors.black54,
                 ),
                 title: Text('도서관 홈페이지',style: TextStyle(fontSize: 18)),
                 dense: true,
@@ -329,12 +329,12 @@ class MainPage extends StatelessWidget {
                   print('Q&A is clicked');
                 }, //trailing: Icon(Icons.add),
               ),
-              Divider(),
+              Divider(color: Colors.black87),
               ListTile(
                 leading: Icon(
-                  Icons.account_balance_wallet,
+                  Icons.web,
                   size: 35,
-                  color: Colors.orangeAccent,
+                  color: Colors.blueGrey,
                 ),
                 title: Text('휴복학신청',style: TextStyle(fontSize: 18)),
                 dense: true,
@@ -342,10 +342,10 @@ class MainPage extends StatelessWidget {
                   print('Q&A is clicked');
                 }, //trailing: Icon(Icons.add),
               ),
-              Divider(),
+              Divider(color: Colors.black87),
               ListTile(
                 leading: Icon(
-                  Icons.account_balance_wallet,
+                  Icons.border_color,
                   size: 35,
                   color: Colors.orangeAccent,
                 ),
@@ -355,12 +355,12 @@ class MainPage extends StatelessWidget {
                   print('Q&A is clicked');
                 }, //trailing: Icon(Icons.add),
               ),
-              Divider(),
+              Divider(color: Colors.black87),
               ListTile(
                 leading: Icon(
-                  Icons.account_balance_wallet,
+                  Icons.feedback,
                   size: 35,
-                  color: Colors.orangeAccent,
+                  color: Colors.blueGrey,
                 ),
                 title: Text('오류보고',style: TextStyle(fontSize: 18)),
                 dense: true,
@@ -369,10 +369,10 @@ class MainPage extends StatelessWidget {
                 },
                 //trailing: Icon(Icons.add),
               ),
-              Divider(),
+              Divider(color: Colors.black87),
               ListTile(
                 leading: Icon(
-                  Icons.account_balance_wallet,
+                  Icons.account_balance,
                   size: 35,
                   color: Colors.orangeAccent,
                 ),
