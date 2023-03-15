@@ -1,6 +1,3 @@
-import 'dart:js_util';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:timer_builder/timer_builder.dart';
 import 'package:date_format/date_format.dart';
@@ -28,9 +25,9 @@ class MainPage extends StatelessWidget {
       title : "동의 모바일",
       theme: ThemeData(
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          selectedItemColor: Colors.black87,
-          unselectedItemColor: Colors.black87,
-          unselectedLabelStyle: TextStyle(fontSize: 14)
+            selectedItemColor: Colors.black87,
+            unselectedItemColor: Colors.black87,
+            unselectedLabelStyle: TextStyle(fontSize: 14)
         ),
       ),
       debugShowCheckedModeBanner: false,
@@ -219,170 +216,175 @@ class MainPage extends StatelessWidget {
         ),
         endDrawer: Drawer(
           width: 220.0,
-            child: ListView(
-              padding: EdgeInsets.zero,
-              children: <Widget>[
-                Container(
-                  height: 104,
-                  margin:EdgeInsets.fromLTRB(0,23, 0, 0),
-                  child: UserAccountsDrawerHeader(
-                    accountName: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text('s77777703',style: TextStyle(fontSize: 18,color:Colors.white)),
-                        Icon(Icons.power_settings_new,size: 38,color: Colors.grey),
-                        Icon(Icons.close,size: 38,color: Colors.grey),
-                      ],
-                    ),
-                      accountEmail: Row(
-                      children: [
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              Container(
+                height: 104,
+                margin:EdgeInsets.fromLTRB(0,0, 0, 0),
+                child: UserAccountsDrawerHeader(
+                  accountName: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text('s77777703',style: TextStyle(fontSize: 18,color:Colors.white)),
+                      Icon(Icons.power_settings_new,size: 38,color: Colors.grey),
+                      Icon(Icons.close,size: 38,color: Colors.grey),
+                    ],
+                  ),
+                  accountEmail: Row(
+                    children: [
 
-                      ],
-                    ),
-                    // onDetailsPressed: () {
-                    //   print('arrow is clicked');
-                    // },
-                    decoration: BoxDecoration(
-                        color: Colors.black54,
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.zero,
-                            bottomRight: Radius.zero)
+                    ],
                   ),
+                  // onDetailsPressed: () {
+                  //   print('arrow is clicked');
+                  // },
+                  decoration: BoxDecoration(
+                      color: Colors.black54,
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.zero,
+                          bottomRight: Radius.zero)
                   ),
                 ),
-                ListTile(
-                  leading: Icon(
-                    Icons.phone_iphone,
-                    size: 35,
-                    color: Colors.grey[850],
-                  ),
-                  title: Text('모바일ID',style: TextStyle(fontSize: 18)),
-                  dense: true,
-                  //horizontalTitleGap: 10,
-                  onTap: () {
-                    print('Home is clicked');
-                  },
-                  //trailing: Icon(Icons.add),
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.phone_iphone,
+                  size: 35,
+                  color: Colors.grey[850],
                 ),
-                ListTile(
-                  leading: Icon(
-                    Icons.restaurant_menu,
-                    size: 35,
-                    color: Colors.grey[850],
-                  ),
-                  title: Text('D-Food',style: TextStyle(fontSize: 18)),
-                  dense: true,
-                  onTap: () {
-                    print('Setting is clicked');
-                  },
-                  //trailing: Icon(Icons.add),
+                title: Text('모바일ID',style: TextStyle(fontSize: 18)),
+                dense: true,
+                //horizontalTitleGap: 10,
+                onTap: () {
+                  print('Home is clicked');
+                },
+                //trailing: Icon(Icons.add),
+              ),
+              Divider(),
+              ListTile(
+                leading: Icon(
+                  Icons.restaurant_menu,
+                  size: 35,
+                  color: Colors.grey[850],
                 ),
-                ListTile(
-                  leading: Icon(
-                    Icons.account_balance_wallet,
-                    size: 35,
-                    color: Colors.orangeAccent,
-                  ),
-                  title: Text('D-Pay',style: TextStyle(fontSize: 18)),
-                  dense: true,
-                  onTap: () {
-                    print('Q&A is clicked');
-                  },
-                  //trailing: Icon(Icons.add),
+                title: Text('D-Food',style: TextStyle(fontSize: 18)),
+                dense: true,
+                onTap: () {
+                  print('Setting is clicked');
+                },
+                //trailing: Icon(Icons.add),
+              ),
+              Divider(),
+              ListTile(
+                leading: Icon(
+                  Icons.account_balance_wallet,
+                  size: 35,
+                  color: Colors.orangeAccent,
                 ),
-                ListTile(
-                  leading: Icon(
-                    Icons.account_balance_wallet,
-                    size: 35,
-                    color: Colors.orangeAccent,
-                  ),
-                  title: Text('도서관',style: TextStyle(fontSize: 18)),
-                  dense: true,
-                  onTap: () {
-                    print('Q&A is clicked');
-                  },
-                  //trailing: Icon(Icons.add),
+                title: Text('D-Pay',style: TextStyle(fontSize: 18)),
+                dense: true,
+                onTap: () {
+                  print('Q&A is clicked');
+                },
+                //trailing: Icon(Icons.add),
+              ),
+              Divider(),
+              ListTile(
+                leading: Icon(
+                  Icons.account_balance_wallet,
+                  size: 35,
+                  color: Colors.orangeAccent,
                 ),
-                ListTile(
-                  leading: Icon(
-                    Icons.account_balance_wallet,
-                    size: 35,
-                    color: Colors.orangeAccent,
-                  ),
-                  title: Text('좌석배정',style: TextStyle(fontSize: 18)),
-                  dense: true,
-                  onTap: () {
-                    print('Q&A is clicked');
-                  },
-                  //trailing: Icon(Icons.add),
+                title: Text('도서관',style: TextStyle(fontSize: 18)),
+                dense: true,
+                onTap: () {
+                  print('Q&A is clicked');
+                }, //trailing: Icon(Icons.add),
+              ),
+              Divider(),
+              ListTile(
+                leading: Icon(
+                  Icons.account_balance_wallet,
+                  size: 35,
+                  color: Colors.orangeAccent,
                 ),
-                ListTile(
-                  leading: Icon(
-                    Icons.account_balance_wallet,
-                    size: 35,
-                    color: Colors.orangeAccent,
-                  ),
-                  title: Text('도서관 홈페이지',style: TextStyle(fontSize: 18)),
-                  dense: true,
-                  onTap: () {
-                    print('Q&A is clicked');
-                  },
-                  //trailing: Icon(Icons.add),
+                title: Text('좌석배정',style: TextStyle(fontSize: 18)),
+                dense: true,
+                onTap: () {
+                  print('Q&A is clicked');
+                },
+                //trailing: Icon(Icons.add),
+              ),
+              Divider(),
+              ListTile(
+                leading: Icon(
+                  Icons.account_balance_wallet,
+                  size: 35,
+                  color: Colors.orangeAccent,
                 ),
-                ListTile(
-                  leading: Icon(
-                    Icons.account_balance_wallet,
-                    size: 35,
-                    color: Colors.orangeAccent,
-                  ),
-                  title: Text('휴복학신청',style: TextStyle(fontSize: 18)),
-                  dense: true,
-                  onTap: () {
-                    print('Q&A is clicked');
-                  },
-                  //trailing: Icon(Icons.add),
+                title: Text('도서관 홈페이지',style: TextStyle(fontSize: 18)),
+                dense: true,
+                onTap: () {
+                  print('Q&A is clicked');
+                }, //trailing: Icon(Icons.add),
+              ),
+              Divider(),
+              ListTile(
+                leading: Icon(
+                  Icons.account_balance_wallet,
+                  size: 35,
+                  color: Colors.orangeAccent,
                 ),
-                ListTile(
-                  leading: Icon(
-                    Icons.account_balance_wallet,
-                    size: 35,
-                    color: Colors.orangeAccent,
-                  ),
-                  title: Text('분실신고',style: TextStyle(fontSize: 18)),
-                  dense: true,
-                  onTap: () {
-                    print('Q&A is clicked');
-                  },
-                  //trailing: Icon(Icons.add),
+                title: Text('휴복학신청',style: TextStyle(fontSize: 18)),
+                dense: true,
+                onTap: () {
+                  print('Q&A is clicked');
+                }, //trailing: Icon(Icons.add),
+              ),
+              Divider(),
+              ListTile(
+                leading: Icon(
+                  Icons.account_balance_wallet,
+                  size: 35,
+                  color: Colors.orangeAccent,
                 ),
-                ListTile(
-                  leading: Icon(
-                    Icons.account_balance_wallet,
-                    size: 35,
-                    color: Colors.orangeAccent,
-                  ),
-                  title: Text('오류보고',style: TextStyle(fontSize: 18)),
-                  dense: true,
-                  onTap: () {
-                    print('Q&A is clicked');
-                  },
-                  //trailing: Icon(Icons.add),
+                title: Text('분실신고',style: TextStyle(fontSize: 18)),
+                dense: true,
+                onTap: () {
+                  print('Q&A is clicked');
+                }, //trailing: Icon(Icons.add),
+              ),
+              Divider(),
+              ListTile(
+                leading: Icon(
+                  Icons.account_balance_wallet,
+                  size: 35,
+                  color: Colors.orangeAccent,
                 ),
-                ListTile(
-                  leading: Icon(
-                    Icons.account_balance_wallet,
-                    size: 35,
-                    color: Colors.orangeAccent,
-                  ),
-                  title: Text('학생증 체크카드',style: TextStyle(fontSize: 18)),
-                  dense: true,
-                  onTap: () {
-                    print('Q&A is clicked');
-                  },
-                  //trailing: Icon(Icons.add),
+                title: Text('오류보고',style: TextStyle(fontSize: 18)),
+                dense: true,
+                onTap: () {
+                  print('Q&A is clicked');
+                },
+                //trailing: Icon(Icons.add),
+              ),
+              Divider(),
+              ListTile(
+                leading: Icon(
+                  Icons.account_balance_wallet,
+                  size: 35,
+                  color: Colors.orangeAccent,
                 ),
-              ],
-            ),
+                title: Text('학생증 체크카드',style: TextStyle(fontSize: 18)),
+                dense: true,
+                onTap: () {
+                  print('Q&A is clicked');
+                },
+                //trailing: Icon(Icons.add),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -438,29 +440,29 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         iconSize: 35,
         items: [
           BottomNavigationBarItem(
-            icon: Container(
-              // decoration: BoxDecoration(
-              //   border: Border.all(
-              //     color: Colors.grey, // 테두리 색상 설정
-              //     width: 1.0, // 테두리 두께 설정
-              //   ),
-              //   borderRadius: BorderRadius.circular(5.0), // 테두리 라운드 처리
-              // ),
-              child: Icon(Icons.phone_iphone, color: Colors.black),
-            ),
+              icon: Container(
+                // decoration: BoxDecoration(
+                //   border: Border.all(
+                //     color: Colors.grey, // 테두리 색상 설정
+                //     width: 1.0, // 테두리 두께 설정
+                //   ),
+                //   borderRadius: BorderRadius.circular(5.0), // 테두리 라운드 처리
+                // ),
+                child: Icon(Icons.phone_iphone, color: Colors.black),
+              ),
               label: "모바일ID"
           ),
           BottomNavigationBarItem(
-            icon: Container(
-              // decoration: BoxDecoration(
-              //   border: Border.all(
-              //     color: Colors.grey, // 테두리 색상 설정
-              //     width: 1.0, // 테두리 두께 설정
-              //   ),
-              //   borderRadius: BorderRadius.circular(5.0), // 테두리 라운드 처리
-              // ),
-              child: Icon(Icons.restaurant_menu, color: Colors.black),
-            ),
+              icon: Container(
+                // decoration: BoxDecoration(
+                //   border: Border.all(
+                //     color: Colors.grey, // 테두리 색상 설정
+                //     width: 1.0, // 테두리 두께 설정
+                //   ),
+                //   borderRadius: BorderRadius.circular(5.0), // 테두리 라운드 처리
+                // ),
+                child: Icon(Icons.restaurant_menu, color: Colors.black),
+              ),
               label: "D-Food"
           ),
           BottomNavigationBarItem(
