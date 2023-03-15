@@ -1,3 +1,5 @@
+import 'dart:js_util';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:timer_builder/timer_builder.dart';
@@ -255,6 +257,8 @@ class MainPage extends StatelessWidget {
                     color: Colors.grey[850],
                   ),
                   title: Text('모바일ID',style: TextStyle(fontSize: 18)),
+                  dense: true,
+                  //horizontalTitleGap: 10,
                   onTap: () {
                     print('Home is clicked');
                   },
@@ -267,6 +271,7 @@ class MainPage extends StatelessWidget {
                     color: Colors.grey[850],
                   ),
                   title: Text('D-Food',style: TextStyle(fontSize: 18)),
+                  dense: true,
                   onTap: () {
                     print('Setting is clicked');
                   },
@@ -279,6 +284,98 @@ class MainPage extends StatelessWidget {
                     color: Colors.orangeAccent,
                   ),
                   title: Text('D-Pay',style: TextStyle(fontSize: 18)),
+                  dense: true,
+                  onTap: () {
+                    print('Q&A is clicked');
+                  },
+                  //trailing: Icon(Icons.add),
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.account_balance_wallet,
+                    size: 35,
+                    color: Colors.orangeAccent,
+                  ),
+                  title: Text('도서관',style: TextStyle(fontSize: 18)),
+                  dense: true,
+                  onTap: () {
+                    print('Q&A is clicked');
+                  },
+                  //trailing: Icon(Icons.add),
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.account_balance_wallet,
+                    size: 35,
+                    color: Colors.orangeAccent,
+                  ),
+                  title: Text('좌석배정',style: TextStyle(fontSize: 18)),
+                  dense: true,
+                  onTap: () {
+                    print('Q&A is clicked');
+                  },
+                  //trailing: Icon(Icons.add),
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.account_balance_wallet,
+                    size: 35,
+                    color: Colors.orangeAccent,
+                  ),
+                  title: Text('도서관 홈페이지',style: TextStyle(fontSize: 18)),
+                  dense: true,
+                  onTap: () {
+                    print('Q&A is clicked');
+                  },
+                  //trailing: Icon(Icons.add),
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.account_balance_wallet,
+                    size: 35,
+                    color: Colors.orangeAccent,
+                  ),
+                  title: Text('휴복학신청',style: TextStyle(fontSize: 18)),
+                  dense: true,
+                  onTap: () {
+                    print('Q&A is clicked');
+                  },
+                  //trailing: Icon(Icons.add),
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.account_balance_wallet,
+                    size: 35,
+                    color: Colors.orangeAccent,
+                  ),
+                  title: Text('분실신고',style: TextStyle(fontSize: 18)),
+                  dense: true,
+                  onTap: () {
+                    print('Q&A is clicked');
+                  },
+                  //trailing: Icon(Icons.add),
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.account_balance_wallet,
+                    size: 35,
+                    color: Colors.orangeAccent,
+                  ),
+                  title: Text('오류보고',style: TextStyle(fontSize: 18)),
+                  dense: true,
+                  onTap: () {
+                    print('Q&A is clicked');
+                  },
+                  //trailing: Icon(Icons.add),
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.account_balance_wallet,
+                    size: 35,
+                    color: Colors.orangeAccent,
+                  ),
+                  title: Text('학생증 체크카드',style: TextStyle(fontSize: 18)),
+                  dense: true,
                   onTap: () {
                     print('Q&A is clicked');
                   },
