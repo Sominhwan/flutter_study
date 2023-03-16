@@ -227,7 +227,13 @@ class MainPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text('s77777703',style: TextStyle(fontSize: 18,color:Colors.white)),
-                      Icon(Icons.power_settings_new,size: 38,color: Colors.grey),
+                      IconButton(
+                          icon: Icon(Icons.power_settings_new,size: 38,color: Colors.grey),
+                        onPressed: () {
+                        print('즐겨찾기에 추가');
+                      },
+                      ),
+                      //Icon(Icons.power_settings_new,size: 38,color: Colors.grey),
                       Icon(Icons.close,size: 38,color: Colors.grey),
                     ],
                   ),
@@ -383,6 +389,7 @@ class MainPage extends StatelessWidget {
                 },
                 //trailing: Icon(Icons.add),
               ),
+              Divider(color: Colors.black87),
             ],
           ),
         ),
