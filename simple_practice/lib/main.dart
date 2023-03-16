@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:timer_builder/timer_builder.dart';
 import 'package:date_format/date_format.dart';
 
@@ -11,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title : "동의 모바일",
       debugShowCheckedModeBanner: false,
       home:MainPage(),
     );
@@ -22,7 +24,6 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title : "동의 모바일",
       theme: ThemeData(
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
             selectedItemColor: Colors.black87,
@@ -228,23 +229,31 @@ class MainPage extends StatelessWidget {
                     children: [
                       Text('s77777703',style: TextStyle(fontSize: 18,color:Colors.white)),
                       IconButton(
-                          icon: Icon(Icons.power_settings_new,size: 38,color: Colors.grey),
+                        icon: Icon(Icons.power_settings_new,size: 38,color: Colors.grey),
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
                         onPressed: () {
-                        print('즐겨찾기에 추가');
-                      },
+                        print('전원 추가');
+                        //SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+                        },
                       ),
-                      //Icon(Icons.power_settings_new,size: 38,color: Colors.grey),
-                      Icon(Icons.close,size: 38,color: Colors.grey),
+                      IconButton(
+                        icon: Icon(Icons.close,size: 38,color: Colors.grey),
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onPressed: () {
+                          WidgetsBinding.instance.addPostFrameCallback((_) {
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => MyApp()));
+                          });
+                          //Navigator.push(context,MaterialPageRoute(builder: (context)=> const MainPage()));
+                          //print('x 추가');
+                        },
+                      ),
                     ],
                   ),
                   accountEmail: Row(
-                    children: [
-
-                    ],
+                    children: [],
                   ),
-                  // onDetailsPressed: () {
-                  //   print('arrow is clicked');
-                  // },
                   decoration: BoxDecoration(
                       color: Colors.black54,
                       borderRadius: BorderRadius.only(
@@ -397,6 +406,8 @@ class MainPage extends StatelessWidget {
     );
   }
 }
+
+
 class CustomBottomNavigationBar extends StatefulWidget {
   @override
   _CustomBottomNavigationBarState createState() =>
