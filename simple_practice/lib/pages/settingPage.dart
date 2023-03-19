@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingPage extends StatelessWidget {
@@ -6,6 +7,7 @@ class SettingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool status = false;
     return MaterialApp(
       theme: ThemeData(
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -21,15 +23,23 @@ class SettingPage extends StatelessWidget {
           preferredSize: Size.fromHeight(70.0),
           child: AppBar(
             backgroundColor: Color.fromRGBO(36, 87, 189, 1.0),
-            leading: Image.asset('assets/images/deulogo.png', height:10), // 이미지 경로 설정
+              leading: Padding(
+                padding: const EdgeInsets.only(left: 12),
+                child: Row(crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Image.asset('assets/images/deulogo.png',height: 45),
+                  ],
+                ),
+              ),
 
-            title: const Text("모바일ID",
+            title: const Text("설정",
               style: TextStyle(
                   fontSize: 30.0,
                   fontWeight: FontWeight.bold,
                   height: 2
               ),
             ),
+
             centerTitle: true,
             elevation: 0.0,
             iconTheme: const IconThemeData(
@@ -37,6 +47,115 @@ class SettingPage extends StatelessWidget {
               color: Colors.blueAccent,//change color on your need
             ),
           ),
+        ),
+
+        body: Column(
+          children: [
+            Container(
+             child : Row(
+              children : [
+                  Text('로그인정보',style: TextStyle(fontSize: 20, color: Colors.black38)),
+              ]
+            ),
+              height: 60, padding: EdgeInsets.all(15),
+              decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.black12))),
+          ),
+            Container(
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 40, top: 35),
+                    child: Text('s777777003',style: TextStyle(fontSize: 20, color: Colors.black,fontWeight: FontWeight.bold)),
+                  ),
+                    Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 215, top: 3),
+                          child: Text('ZL',style: TextStyle(fontSize: 20, color: Colors.black,fontWeight: FontWeight.bold)),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 150, top: 10),
+                          child: Text('특별열람증',style: TextStyle(fontSize: 20, color: Colors.black,fontWeight: FontWeight.bold)),
+                        )
+                      ],
+                    ),
+                ],
+              ),
+              height: 70, //padding: EdgeInsets.only(left: 20, top:10)
+              color: Colors.white,
+             // decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.black12)))
+            ),
+            Container(
+              child : Row(
+                  children : [
+                    Text('프로그램 정보',style: TextStyle(fontSize: 20, color: Colors.black38)),
+                  ]
+              ),
+              height: 60, padding: EdgeInsets.all(15),
+              decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.black12),top: BorderSide(color: Colors.black12))),
+            ),
+            Container(
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 40),
+                    child: Text('현재버전',style: TextStyle(fontSize: 20, color: Colors.black,fontWeight: FontWeight.bold)),
+                  ),
+                  Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 235, top: 25),
+                        child: Text('1.4.6',style: TextStyle(fontSize: 20, color: Colors.black)),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+              height: 70, //padding: EdgeInsets.only(left: 20, top:10)
+              color: Colors.white,
+            ),
+            Container(
+              child : Row(
+                  children : [
+                    Text('생체인증 사용 설정',style: TextStyle(fontSize: 20, color: Colors.black38)),
+                  ]
+              ),
+              height: 60, padding: EdgeInsets.all(15),
+              decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.black12),top: BorderSide(color: Colors.black12))),
+            ),
+            Container(
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 40),
+                    child: Text('지문인증',style: TextStyle(fontSize: 20, color: Colors.black,fontWeight: FontWeight.bold)),
+                  ),
+                  Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 181,top: 10),
+                        child: FlutterSwitch(
+                          value: status,
+                          width: 100.0,
+                          height: 45.0,
+                          valueFontSize: 25.0,
+                          toggleSize: 40.0,
+                          borderRadius: 30.0,
+                          padding: 8.0,
+                          showOnOff: false,
+                          onToggle: (val) {
+                            status = false;
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              height: 70, //padding: EdgeInsets.only(left: 20, top:10)
+              color: Colors.white,
+            ),
+          ],
         ),
 
         endDrawer: Drawer(

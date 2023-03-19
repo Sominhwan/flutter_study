@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:simple_practice/pages/d_foodPage.dart';
+import 'package:simple_practice/pages/dinnerInfoPage.dart';
 import 'package:simple_practice/pages/mainPage.dart';
+import 'package:simple_practice/pages/seatingPage.dart';
 import 'package:simple_practice/pages/settingPage.dart';
 import 'package:timer_builder/timer_builder.dart';
 import 'package:date_format/date_format.dart';
@@ -49,11 +52,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           if( _selectedIndex == 0) {
             return const MainPage();
           } else if(_selectedIndex == 1){
-
+             return DinnerInfoPage();
           } else if(_selectedIndex == 2){
-
+             return DFoodPage();
           } else if(_selectedIndex == 3){
-
+             return SeatingPage();
           } else if(_selectedIndex == 4){
              return const SettingPage();
           }
@@ -91,8 +94,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         //selectedItemColor: Colors.amber[800],
         //unselectedItemColor: Colors.blue,
         iconSize: 35,
-        unselectedLabelStyle: TextStyle(fontSize: 14),
-        selectedLabelStyle: TextStyle(color: Colors.black),
+        unselectedLabelStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+        selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
         // backgroundColor: Colors.black,
       ),
     );

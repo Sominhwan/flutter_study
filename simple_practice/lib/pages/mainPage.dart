@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:simple_practice/pages/InformPage.dart';
+import 'package:simple_practice/pages/dormiryPage.dart';
 import 'package:timer_builder/timer_builder.dart';
 import 'package:date_format/date_format.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../main.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -23,8 +27,14 @@ class MainPage extends StatelessWidget {
           preferredSize: Size.fromHeight(70.0),
           child: AppBar(
             backgroundColor: Color.fromRGBO(36, 87, 189, 1.0),
-            leading: Image.asset('assets/images/deulogo.png', height:10), // 이미지 경로 설정
-
+            leading: Padding(
+              padding: const EdgeInsets.only(left: 12),
+              child: Row(crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Image.asset('assets/images/deulogo.png',height: 45),
+                ],
+              ),
+            ), // 이미지 경로 설정
             title: const Text("모바일ID",
               style: TextStyle(
                   fontSize: 30.0,
@@ -135,8 +145,13 @@ class MainPage extends StatelessWidget {
                           Image.asset('assets/images/icon1.png',width: 90),
                         ],
                       ),
-                      onTap: () {
-
+                      onTap: (){
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => InformPage()
+                            )
+                        );
                       }
                   ),
                   InkWell(
@@ -177,7 +192,12 @@ class MainPage extends StatelessWidget {
                         ],
                       ),
                       onTap: () {
-
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DormiryPage()
+                            )
+                        );
                       }
                   ),
                   // 다른 아이콘 추가 가능
