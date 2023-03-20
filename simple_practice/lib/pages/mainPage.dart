@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:simple_practice/pages/InformPage.dart';
 import 'package:simple_practice/pages/dormiryPage.dart';
+import 'package:simple_practice/pages/qrCodePage.dart';
 import 'package:timer_builder/timer_builder.dart';
 import 'package:date_format/date_format.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -181,7 +182,12 @@ class MainPage extends StatelessWidget {
                         ],
                       ),
                       onTap: () {
-
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const QrCodePage()
+                            )
+                        );
                       }
                   ),
                   InkWell(
