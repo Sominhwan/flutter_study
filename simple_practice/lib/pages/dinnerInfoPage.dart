@@ -33,9 +33,8 @@ class DinnerInfoPage extends StatelessWidget {
                   icon: Icon(Icons.close,color: Colors.blueAccent,size: 45), // 검색 아이콘 생성
                   onPressed: () {
                     WidgetsBinding.instance.addPostFrameCallback((_) {
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => MyApp()));
+                      Navigator.pop(context);
                     });
-                    Navigator.push(context,MaterialPageRoute(builder: (context)=> const MyApp()));
                   },
                 ),
               ),

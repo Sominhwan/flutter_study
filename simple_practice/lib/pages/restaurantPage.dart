@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../main.dart';
 
-class DormiryPage extends StatelessWidget {
+class RestaurantPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,12 +42,11 @@ class DormiryPage extends StatelessWidget {
             ],
             centerTitle: true,
             elevation: 0.0,
-
           ),
         ),
         body: Container(
           child: WebView(
-            initialUrl: "https://dorm.deu.ac.kr/",
+            initialUrl: "https://dap.deu.ac.kr/StdNotice.aspx",
             javascriptMode: JavascriptMode.unrestricted,
             //javascriptMode: JavascriptMode.unrestricted,
           ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:simple_practice/pages/InformPage.dart';
 import 'package:simple_practice/pages/dormiryPage.dart';
 import 'package:simple_practice/pages/qrCodePage.dart';
+import 'package:simple_practice/pages/restaurantPage.dart';
 import 'package:timer_builder/timer_builder.dart';
 import 'package:date_format/date_format.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -215,7 +216,28 @@ class MainPage extends StatelessWidget {
                         ],
                       ),
                       onTap: () {
-
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => RestaurantPage()
+                            )
+                        );
+                      }
+                  ),
+                  InkWell(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset('assets/images/icon6.jpg',width: 65),
+                        ],
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const QrCodePage()
+                            )
+                        );
                       }
                   ),
                 ],
