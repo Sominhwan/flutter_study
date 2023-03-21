@@ -52,9 +52,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           if( _selectedIndex == 0) {
             return const MainPage();
           } else if(_selectedIndex == 1){
-             return DinnerInfoPage();
-          } else if(_selectedIndex == 2){
              return DFoodPage();
+          } else if(_selectedIndex == 2){
+            return DinnerInfoPage();
           } else if(_selectedIndex == 3){
              return SeatingPage();
           } else if(_selectedIndex == 4){

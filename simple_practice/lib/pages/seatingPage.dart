@@ -34,7 +34,7 @@ class SeatingPage extends StatelessWidget {
                   icon: Icon(Icons.close,color: Colors.blueAccent,size: 45), // 검색 아이콘 생성
                   onPressed: () {
                     WidgetsBinding.instance.addPostFrameCallback((_) {
-                      Navigator.pop(context);
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MyApp()));
                     });
                   },
                 ),
