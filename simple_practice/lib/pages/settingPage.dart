@@ -1,24 +1,68 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:flutter/services.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class SettingPage extends StatelessWidget {
+class SettingPage extends StatefulWidget {
   const SettingPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    bool status = false;
-    return MaterialApp(
-      theme: ThemeData(
-        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-            selectedItemColor: Colors.black87,
-            unselectedItemColor: Colors.black87,
-            unselectedLabelStyle: TextStyle(fontSize: 14)
+  SettingPageState createState() => SettingPageState();
+}
+
+class SettingPageState extends State<SettingPage> {
+  int _counter = 0;
+  bool isSwitchOn = false;
+  bool check = true;
+  final LocalAuthentication auth = LocalAuthentication();
+  bool? _canCheckBiometrics;
+  List<BiometricType>? _availableBiometrics;
+  String _authorized = 'Not Authorized';
+  bool _isAuthenticating = false;
+
+  Future<void> _authenticateWithBiometrics() async {
+    bool authenticated = false;
+    try {
+      setState(() {
+        _isAuthenticating = true;
+        _authorized = 'Authenticating';
+      });
+      authenticated = await auth.authenticate(
+        localizedReason:
+        '지문으로 인증해 주세요.',
+        options: const AuthenticationOptions(
+          stickyAuth: true,
+          biometricOnly: true,
         ),
-      ),
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: Color.fromRGBO(213, 213, 213, 1.0),
+      );
+      setState(() {
+        check = true;
+        _isAuthenticating = false;
+        _authorized = 'Authenticating';
+      });
+    } on PlatformException catch (e) {
+      print(e);
+      setState(() {
+        _isAuthenticating = false;
+        _authorized = 'Error - ${e.message}';
+      });
+      return ;
+    }
+    if (!mounted) {
+      return ;
+    }
+
+    final String message = authenticated ? 'Authorized' : 'Not Authorized';
+    setState(() {
+      _authorized = message;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Color.fromRGBO(213, 213, 213, 1.0),
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(70.0),
           child: AppBar(
@@ -31,7 +75,6 @@ class SettingPage extends StatelessWidget {
                   ],
                 ),
               ),
-
             title: const Text("설정",
               style: TextStyle(
                   fontSize: 30.0,
@@ -48,7 +91,6 @@ class SettingPage extends StatelessWidget {
             ),
           ),
         ),
-
         body: Column(
           children: [
             Container(
@@ -135,17 +177,21 @@ class SettingPage extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 181,top: 10),
                         child: FlutterSwitch(
-                          value: status,
+                          value: isSwitchOn,
                           width: 100.0,
                           height: 45.0,
-                          valueFontSize: 25.0,
                           toggleSize: 40.0,
                           borderRadius: 30.0,
                           padding: 8.0,
                           showOnOff: false,
-                          onToggle: (val) {
-                            status = false;
-                          },
+                          onToggle: (value) {
+                            _authenticateWithBiometrics();
+                            value = check;
+                            setState(() {
+                              //_authenticateWithBiometrics();
+                              isSwitchOn = value;
+                            });
+                            },
                         ),
                       ),
                     ],
@@ -157,199 +203,197 @@ class SettingPage extends StatelessWidget {
             ),
           ],
         ),
+      endDrawer: Drawer(
+        width: 220.0,
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            Container(
+              height: 104,
+              margin:EdgeInsets.fromLTRB(0,0, 0, 0),
+              child: UserAccountsDrawerHeader(
+                accountName: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text('s77777703',style: TextStyle(fontSize: 18,color:Colors.white)),
+                    IconButton(
+                      icon: Icon(Icons.power_settings_new,size: 38,color: Colors.grey),
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onPressed: () async {
 
-        endDrawer: Drawer(
-          width: 220.0,
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              Container(
-                height: 104,
-                margin:EdgeInsets.fromLTRB(0,0, 0, 0),
-                child: UserAccountsDrawerHeader(
-                  accountName: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text('s77777703',style: TextStyle(fontSize: 18,color:Colors.white)),
-                      IconButton(
-                        icon: Icon(Icons.power_settings_new,size: 38,color: Colors.grey),
-                        splashColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onPressed: () async {
-
-                        },
-                      ),
-                      IconButton(
-                        icon: Icon(Icons.close,size: 38,color: Colors.grey),
-                        splashColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onPressed: () {
-                          // WidgetsBinding.instance.addPostFrameCallback((_) {
-                          //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => MainPage()));
-                          // });
-                          //Navigator.push(context,MaterialPageRoute(builder: (context)=> const MainPage()));
-                          //print('x 추가');
-                        },
-                      ),
-                    ],
-                  ),
-                  accountEmail: Row(
-                    children: [],
-                  ),
-                  decoration: BoxDecoration(
-                      color: Colors.black54,
-                      borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.zero,
-                          bottomRight: Radius.zero)
-                  ),
+                      },
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.close,size: 38,color: Colors.grey),
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onPressed: () {
+                        // WidgetsBinding.instance.addPostFrameCallback((_) {
+                        //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => MainPage()));
+                        // });
+                        //Navigator.push(context,MaterialPageRoute(builder: (context)=> const MainPage()));
+                        //print('x 추가');
+                      },
+                    ),
+                  ],
+                ),
+                accountEmail: Row(
+                  children: [],
+                ),
+                decoration: BoxDecoration(
+                    color: Colors.black54,
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.zero,
+                        bottomRight: Radius.zero)
                 ),
               ),
-              ListTile(
-                leading: Icon(
-                  Icons.phone_iphone,
-                  size: 35,
-                  color: Colors.grey[850],
-                ),
-                title: Text('모바일ID',style: TextStyle(fontSize: 18)),
-                dense: true,
-                //horizontalTitleGap: 10,
-                onTap: () {
-                  print('Home is clicked');
-                },
-                //trailing: Icon(Icons.add),
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.phone_iphone,
+                size: 35,
+                color: Colors.grey[850],
               ),
-              Divider(color: Colors.black87),
-              ListTile(
-                leading: Icon(
-                  Icons.restaurant_menu,
-                  size: 35,
-                  color: Colors.grey[850],
-                ),
-                title: Text('D-Food',style: TextStyle(fontSize: 18)),
-                dense: true,
-                onTap: () {
-                  print('Setting is clicked');
-                },
-                //trailing: Icon(Icons.add),
+              title: Text('모바일ID',style: TextStyle(fontSize: 18)),
+              dense: true,
+              //horizontalTitleGap: 10,
+              onTap: () {
+                print('Home is clicked');
+              },
+              //trailing: Icon(Icons.add),
+            ),
+            Divider(color: Colors.black87),
+            ListTile(
+              leading: Icon(
+                Icons.restaurant_menu,
+                size: 35,
+                color: Colors.grey[850],
               ),
-              Divider(color: Colors.black87),
-              ListTile(
-                leading: Icon(
-                  Icons.account_balance_wallet,
-                  size: 35,
-                  color: Colors.orangeAccent,
-                ),
-                title: Text('D-Pay',style: TextStyle(fontSize: 18)),
-                dense: true,
-                onTap: () {
-                  print('Q&A is clicked');
-                },
-                //trailing: Icon(Icons.add),
+              title: Text('D-Food',style: TextStyle(fontSize: 18)),
+              dense: true,
+              onTap: () {
+                print('Setting is clicked');
+              },
+              //trailing: Icon(Icons.add),
+            ),
+            Divider(color: Colors.black87),
+            ListTile(
+              leading: Icon(
+                Icons.account_balance_wallet,
+                size: 35,
+                color: Colors.orangeAccent,
               ),
-              Divider(color: Colors.black87),
-              ListTile(
-                leading: Icon(
-                  Icons.menu_book,
-                  size: 35,
-                  color: Colors.orangeAccent,
-                ),
-                title: Text('도서관',style: TextStyle(fontSize: 18)),
-                dense: true,
-                onTap: () {
-                  print('Q&A is clicked');
-                }, //trailing: Icon(Icons.add),
+              title: Text('D-Pay',style: TextStyle(fontSize: 18)),
+              dense: true,
+              onTap: () {
+                print('Q&A is clicked');
+              },
+              //trailing: Icon(Icons.add),
+            ),
+            Divider(color: Colors.black87),
+            ListTile(
+              leading: Icon(
+                Icons.menu_book,
+                size: 35,
+                color: Colors.orangeAccent,
               ),
-              Divider(color: Colors.black87),
-              ListTile(
-                leading: Icon(
-                  Icons.chair_alt,
-                  size: 35,
-                  color: Colors.black54,
-                ),
-                title: Text('좌석배정',style: TextStyle(fontSize: 18)),
-                dense: true,
-                onTap: () {
-                  print('Q&A is clicked');
-                },
-                //trailing: Icon(Icons.add),
+              title: Text('도서관',style: TextStyle(fontSize: 18)),
+              dense: true,
+              onTap: () {
+                print('Q&A is clicked');
+              }, //trailing: Icon(Icons.add),
+            ),
+            Divider(color: Colors.black87),
+            ListTile(
+              leading: Icon(
+                Icons.chair_alt,
+                size: 35,
+                color: Colors.black54,
               ),
-              Divider(color: Colors.black87),
-              ListTile(
-                leading: Icon(
-                  Icons.laptop_windows,
-                  size: 35,
-                  color: Colors.black54,
-                ),
-                title: Text('도서관 홈페이지',style: TextStyle(fontSize: 18)),
-                dense: true,
-                onTap: () async{
-                  final url = Uri.parse(
-                    'https://lib.deu.ac.kr/',
-                  );
-                  if (await canLaunchUrl(url)) {
-                    launchUrl(url);
-                  } else {
-                    print("Can't launch $url");
-                  }
-                }, //trailing: Icon(Icons.add),
+              title: Text('좌석배정',style: TextStyle(fontSize: 18)),
+              dense: true,
+              onTap: () {
+                print('Q&A is clicked');
+              },
+              //trailing: Icon(Icons.add),
+            ),
+            Divider(color: Colors.black87),
+            ListTile(
+              leading: Icon(
+                Icons.laptop_windows,
+                size: 35,
+                color: Colors.black54,
               ),
-              Divider(color: Colors.black87),
-              ListTile(
-                leading: Icon(
-                  Icons.web,
-                  size: 35,
-                  color: Colors.blueGrey,
-                ),
-                title: Text('휴복학신청',style: TextStyle(fontSize: 18)),
-                dense: true,
-                onTap: () {
-                  print('Q&A is clicked');
-                }, //trailing: Icon(Icons.add),
+              title: Text('도서관 홈페이지',style: TextStyle(fontSize: 18)),
+              dense: true,
+              onTap: () async{
+                final url = Uri.parse(
+                  'https://lib.deu.ac.kr/',
+                );
+                if (await canLaunchUrl(url)) {
+                  launchUrl(url);
+                } else {
+                  print("Can't launch $url");
+                }
+              }, //trailing: Icon(Icons.add),
+            ),
+            Divider(color: Colors.black87),
+            ListTile(
+              leading: Icon(
+                Icons.web,
+                size: 35,
+                color: Colors.blueGrey,
               ),
-              Divider(color: Colors.black87),
-              ListTile(
-                leading: Icon(
-                  Icons.border_color,
-                  size: 35,
-                  color: Colors.orangeAccent,
-                ),
-                title: Text('분실신고',style: TextStyle(fontSize: 18)),
-                dense: true,
-                onTap: () {
-                  print('Q&A is clicked');
-                }, //trailing: Icon(Icons.add),
+              title: Text('휴복학신청',style: TextStyle(fontSize: 18)),
+              dense: true,
+              onTap: () {
+                print('Q&A is clicked');
+              }, //trailing: Icon(Icons.add),
+            ),
+            Divider(color: Colors.black87),
+            ListTile(
+              leading: Icon(
+                Icons.border_color,
+                size: 35,
+                color: Colors.orangeAccent,
               ),
-              Divider(color: Colors.black87),
-              ListTile(
-                leading: Icon(
-                  Icons.feedback,
-                  size: 35,
-                  color: Colors.blueGrey,
-                ),
-                title: Text('오류보고',style: TextStyle(fontSize: 18)),
-                dense: true,
-                onTap: () {
-                  print('Q&A is clicked');
-                },
-                //trailing: Icon(Icons.add),
+              title: Text('분실신고',style: TextStyle(fontSize: 18)),
+              dense: true,
+              onTap: () {
+                print('Q&A is clicked');
+              }, //trailing: Icon(Icons.add),
+            ),
+            Divider(color: Colors.black87),
+            ListTile(
+              leading: Icon(
+                Icons.feedback,
+                size: 35,
+                color: Colors.blueGrey,
               ),
-              Divider(color: Colors.black87),
-              ListTile(
-                leading: Icon(
-                  Icons.account_balance,
-                  size: 35,
-                  color: Colors.orangeAccent,
-                ),
-                title: Text('학생증 체크카드',style: TextStyle(fontSize: 18)),
-                dense: true,
-                onTap: () {
-                  print('Q&A is clicked');
-                },
-                //trailing: Icon(Icons.add),
+              title: Text('오류보고',style: TextStyle(fontSize: 18)),
+              dense: true,
+              onTap: () {
+                print('Q&A is clicked');
+              },
+              //trailing: Icon(Icons.add),
+            ),
+            Divider(color: Colors.black87),
+            ListTile(
+              leading: Icon(
+                Icons.account_balance,
+                size: 35,
+                color: Colors.orangeAccent,
               ),
-              Divider(color: Colors.black87),
-            ],
-          ),
+              title: Text('학생증 체크카드',style: TextStyle(fontSize: 18)),
+              dense: true,
+              onTap: () {
+                print('Q&A is clicked');
+              },
+              //trailing: Icon(Icons.add),
+            ),
+            Divider(color: Colors.black87),
+          ],
         ),
       ),
     );
