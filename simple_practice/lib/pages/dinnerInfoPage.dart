@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import '../main.dart';
 
@@ -11,9 +12,39 @@ class DinnerInfoPage extends StatefulWidget {
 class DPayInfo extends State<DinnerInfoPage>{
   List<String> _toggleList = ['후불 정산 내역', 'D-Pay 사용내역'];
   List<bool> _isSelected = [false, false];
+
+  Widget firstScreen(){
+    return  Container(
+      //padding: EdgeInsets.all(10),
+      height: 35,
+      margin: EdgeInsets.all(22),
+      child: ToggleButtons(
+        borderRadius: BorderRadius.all(Radius.circular(6)),
+        fillColor: Colors.blue,
+        selectedColor: Colors.white,
+        isSelected: [],
+        children: _toggleList.map((String value) {
+          return Padding(
+            padding: const EdgeInsets.only(left: 50, right: 50),
+            child: Text(
+              value,
+              style: TextStyle(fontSize: 13),
+            ),
+          );
+        }).toList(),
+      ),
+    );
+  }
+  Widget secondScreen(){
+    return Container(
+      child: Center(
+        child: Text("화면2"),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         backgroundColor: Color.fromRGBO(242, 242, 242, 100),
         appBar: PreferredSize(
@@ -54,34 +85,41 @@ class DPayInfo extends State<DinnerInfoPage>{
             elevation: 0.0,
           ),
         ),
+        body: Column(
+          children: [
+          Container(
+            //padding: EdgeInsets.all(10),
+            height: 35,
+            margin: EdgeInsets.all(22),
+            child: ToggleButtons(
+              borderRadius: BorderRadius.all(Radius.circular(6)),
+              fillColor: Colors.blue,
+              selectedColor: Colors.white,
+              children: _toggleList.map((String value) {
+                return Padding(
+                  padding: const EdgeInsets.only(left: 50, right: 50),
+                  child: Text(
+                    value,
+                    style: TextStyle(fontSize: 13),
+                  ),
+                );
+              }).toList(),
+              isSelected: _isSelected,
+              onPressed: (index) {
+                setState(() {
+                  _isSelected[index] = !_isSelected[index];
+                  if(_isSelected[0]){
+                    _isSelected[1] = false;
 
-        body: Container(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 10, left: 23),
-            child: Container(
-              height: 35,
-              child: ToggleButtons(
-                borderRadius: BorderRadius.all(Radius.circular(6)),
-                fillColor: Colors.blue,
-                selectedColor: Colors.white,
-                children: _toggleList.map((String value) {
-                  return Padding(
-                    padding: const EdgeInsets.only(left: 50, right: 50),
-                    child: Text(
-                      value,
-                      style: TextStyle(fontSize: 13),
-                    ),
-                  );
-                }).toList(),
-                isSelected: _isSelected,
-                onPressed: (int index) {
-                  setState(() {
-                    _isSelected[index] = !_isSelected[index];
-                  });
-                },
-              ),
+                  }else if(_isSelected[1]){
+                    _isSelected[0] = false;
+                    Navigator.pushNamed(context,'firstScreen()' );
+                  }
+                });
+              },
             ),
           ),
+          ],
         ),
     );
   }
