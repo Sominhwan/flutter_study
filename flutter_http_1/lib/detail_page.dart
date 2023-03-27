@@ -1,0 +1,1 @@
+// datail_page.dart
