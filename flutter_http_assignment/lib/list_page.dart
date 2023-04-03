@@ -4,8 +4,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_http_1/post_dto.dart';
-import 'package:flutter_http_1/post_repository.dart';
+import 'package:flutter_http_assignment/movie_dto.dart';
+import 'package:flutter_http_assignment/movie_repository.dart';
+
 import 'package:http/http.dart' as http;
 
 class ListPage extends HookWidget {
@@ -13,9 +14,9 @@ class ListPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final listState = useState<List<PostDTOTable>?>(null);
+    final listState = useState<List<MovieDTOTable>?>(null);
     useEffect(() {
-      PostRepository.instance.getDTOList().then((value){
+      MovieRepository.instance.getDTOList().then((value){
         listState.value = value;
       });
     }, []);
@@ -23,7 +24,7 @@ class ListPage extends HookWidget {
     return Scaffold(
       body: SafeArea(
         child: ListView(
-          children: listState.value?.map((e) => ListItem(postDTOTable: e)).toList() ?? [],
+          children: listState.value?.map((e) => ListItem(movieDTOTable: e)).toList() ?? [],
         ),
       ),
     );
@@ -31,9 +32,9 @@ class ListPage extends HookWidget {
 }
 
 class ListItem extends StatelessWidget {
-  PostDTOTable postDTOTable;
+  MovieDTOTable movieDTOTable;
 
-  ListItem({Key? key, required this.postDTOTable}) : super(key: key);
+  ListItem({Key? key, required this.movieDTOTable}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,11 +45,13 @@ class ListItem extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Text("유저번호 : ${postDTOTable.userId}"),
+          Text("영화랭킹 : ${movieDTOTable.rank}"),
           Divider(),
-          Text("글 번호 : ${postDTOTable.id}"),
+          Text("영화 관객수 : ${movieDTOTable.audiCnt}"),
           Divider(),
-          Text("글 제목 : ${postDTOTable.title}"),
+          Text("영화이름 : ${movieDTOTable.movieNm}"),
+          Divider(),
+          Text("개봉일 : ${movieDTOTable.openDt}"),
         ],
       ),
     );

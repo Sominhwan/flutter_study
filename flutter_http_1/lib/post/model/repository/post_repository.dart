@@ -1,7 +1,7 @@
 // post_repository.dart
 import 'dart:convert';
 
-import 'package:flutter_http_1/post_dto.dart';
+import 'package:flutter_http_1/post/model/dto/post_dto.dart';
 import 'package:http/http.dart' as http;
 
 class PostRepository{
@@ -39,7 +39,6 @@ class PostRepository{
 //   PostRepository.instance;
 //   PostRepository.instance;
 // }
-
 
 
 
