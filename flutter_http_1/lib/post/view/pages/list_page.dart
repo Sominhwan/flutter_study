@@ -42,7 +42,7 @@ class ListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.pushNamed(Routes.detail);
+        context.pushNamed(Routes.detail, params: {"postId" : postDTOTable.id.toString()});
       },
       child: Container(
         padding: EdgeInsets.all(10),

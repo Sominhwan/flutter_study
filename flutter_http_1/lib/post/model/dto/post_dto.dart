@@ -37,4 +37,11 @@ class PostDTODetail {
         required this.id,
         required this.title,
         required this.body}); // 내용
+
+  factory PostDTODetail.fromJson(dynamic json) => PostDTODetail(
+      userId: json["userId"],
+      id: json["id"],
+      title: json["title"],
+      body: json["body"]
+  );
 }

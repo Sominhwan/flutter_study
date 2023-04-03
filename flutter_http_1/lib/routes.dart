@@ -17,8 +17,8 @@ class Routes {
         ),
         GoRoute(
           name: Routes.detail,
-          path: '/detail',
-          builder: (context, state) => DetailPage(),
+          path: '/:postId',
+          builder: (context, state) => DetailPage(postId: int.parse(state.params["postId"]!)),
         ),
       ],
   );
